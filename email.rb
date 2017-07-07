@@ -2,8 +2,7 @@ class Email
 
 
 	attr_accessor :email
-    attr_accessor :aluno
-
+ 
     def initialize( email)
         @email = email
 
@@ -16,7 +15,7 @@ class Email
         emails[1] = nomes.length > 2 ? nomes[0] + nomes[1].chr+ 
                     nomes[2].chr + "@id.uff.br" :
                     nomes[0]+nomes[1].chr + "@id.uff.br"
-        #refatorar para pegar  nomes < 3
+        #TODO refatorar para pegar  nomes < 3
         emails[2] = nomes[0] + nomes[2] + "@id.uff.br"
         emails[3] = nomes[0].chr + nomes[2] + "@id.uff.br"
         emails[4] = nomes[0].chr + nomes[1] + nomes[2] + "@id.uff.br"

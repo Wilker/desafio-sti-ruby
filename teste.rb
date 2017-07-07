@@ -12,7 +12,9 @@ aluno = Aluno.new(
                "Ativo"
                )
                
-email = Email.new(aluno, "Wilker.rj@gmail.com")
+email = Email.new("Wilker.rj@gmail.com")
 
-print "#{email.aluno.nome} \n#{email.aluno.matricula} \n#{email.aluno.email} \n#{email.aluno.uffmail} \n#{email.aluno.status}\n"
+#print "#{email.aluno.nome} \n#{email.aluno.matricula} \n#{email.aluno.email} \n#{email.aluno.uffmail} \n#{email.aluno.status}\n"
 
+
+puts email.generateEmail("Laura Azevedo Cunha")

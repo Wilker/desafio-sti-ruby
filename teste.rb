@@ -19,6 +19,8 @@ email = Email.new("teste@gmail.com")
 
 puts email.generateEmail("Laura Azevedo Cunha")
 
-file = ManageFile.new("./alunos.csv")
+alunos = ManageFile.new("./alunos.csv").read
 
-print file.read
+alunos.each{|aluno|aluno.each{|k,v| puts v if k=="matricula"}}
+
+# print file

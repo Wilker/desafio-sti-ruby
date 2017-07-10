@@ -11,7 +11,7 @@ class Sistema
             
     def matExists(mat)
     aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-    alunos.inclue?(alunos)
+    return alunos.include?(aluno)
     end
     
     def isActive(mat)
@@ -19,7 +19,10 @@ class Sistema
     active = aluno.status=="Ativo" ? true : false
     end
     
-    
+    def checkUffMail(mat)
+    aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
+    uffmail = aluno.uffmail==nil || aluno.uffmail.include?("@id.uff.br")  ? false : true
+    end
     
     def start()
         @alunos = ManageFile.new("./alunos.csv").read
@@ -36,7 +39,7 @@ class Sistema
         return
         end
         
-        if(!checkUffMail(mat))
+        if(checkUffMail(mat))
         uffMailExists
         return
         end

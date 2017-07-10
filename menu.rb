@@ -1,7 +1,7 @@
 module Menu
 
-    def inicial
-    puts "Insira sua matrícula:"
+    def menuInicial
+    puts "Insira sua matricula:"
     mat = gets.chomp
     end
     
@@ -10,7 +10,11 @@ module Menu
     end
    
     def uffMailExists
-    puts "Usuário já possui uffmail"
+    puts "Usuario ja possui uffmail"
     end
+    
+    def matNotExists
+    puts "Matricula invalida"
+    end    
     
 end

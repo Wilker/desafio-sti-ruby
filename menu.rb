@@ -17,4 +17,10 @@ module Menu
     puts "Matricula invalida"
     end    
     
+    def optionsEmail(aluno)
+    puts "Escolha uma Opcao"
+    puts aluno.email.generateEmail(aluno.nome)
+    option = gets.chomp
+    end
+    
 end

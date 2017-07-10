@@ -27,6 +27,7 @@ class Sistema
     def start()
         @alunos = ManageFile.new("./alunos.csv").read
         
+        #TODO refatorar para pegar o aluno uma vez apenas!!
         mat = menuInicial
                        
         if(!matExists(mat))
@@ -43,6 +44,9 @@ class Sistema
         uffMailExists
         return
         end
+                
+        aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
+        optionsEmail(aluno)
         
     end
     

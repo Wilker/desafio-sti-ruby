@@ -29,7 +29,8 @@ class Sistema
     end
     
     def start()
-        @alunos = ManageFile.new("./alunos.csv").read
+        fileManager = ManageFile.new("./alunos.csv")
+        @alunos = fileManager.read
         
         #TODO refatorar para pegar o aluno uma vez apenas!!
         mat = menuInicial
@@ -53,6 +54,7 @@ class Sistema
         uffMail = optionsEmail(aluno)
         createUffMail(aluno, uffMail)
         emailCreated(aluno)
+        fileManager.write(alunos)
     end
     
 end

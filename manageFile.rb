@@ -20,6 +20,18 @@ class ManageFile
 
     # Função para carregar cada linha do arquivo para um objeto da classe aluno
     def read
-    alunos = CSV.read(path).collect{ |row| Aluno.new *row }
+        alunos = CSV.read(path).collect{ |row| Aluno.new *row }
     end
+    
+    def write(alunos)
+        CSV.open(path, "w") do |row|
+        alunos.each{|aluno| row << [aluno.nome,
+                                    aluno.matricula,
+                                    aluno.telefone,
+                                    aluno.email.email,
+                                    aluno.uffmail.email,
+                                    aluno.status]}
+        end
+    end
+                               
 end    

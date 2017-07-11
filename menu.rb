@@ -26,7 +26,7 @@ module Menu
     end
     
     def emailCreated(aluno)
-    puts "A criacao de seu e-mail (#{aluno.uffmail}) sera feita nos proximos minutos.
+    puts "A criacao de seu e-mail (#{aluno.uffmail.email}) sera feita nos proximos minutos.
 Um SMS foi enviado para #{aluno.telefone} com a sua senha de acesso."
     end
 end

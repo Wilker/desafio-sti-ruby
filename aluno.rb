@@ -1,4 +1,5 @@
 require_relative 'email'
+require_relative 'uffmail'
 class Aluno
     attr_accessor :nome
     attr_accessor :matricula
@@ -22,5 +23,6 @@ class Aluno
         @uffmail = uffmail
         @status = status
         @email = Email.new(email)
+        @uffmail = Uffmail.new(uffmail)
     end
 end

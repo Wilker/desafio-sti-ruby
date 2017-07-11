@@ -21,11 +21,11 @@ class Sistema
     
     def checkUffMail(mat)
     aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-    uffmail = aluno.uffmail==nil || aluno.uffmail.include?("@id.uff.br")  ? false : true
+    uffmail = aluno.uffmail.email==nil || !aluno.uffmail.email.include?("@id.uff.br")  ? false : true
     end
     
     def createUffMail(aluno, option)
-        aluno.uffmail = option
+        aluno.uffmail.email  = option
     end
     
     def start()

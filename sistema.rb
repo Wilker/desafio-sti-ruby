@@ -24,6 +24,10 @@ class Sistema
     uffmail = aluno.uffmail==nil || aluno.uffmail.include?("@id.uff.br")  ? false : true
     end
     
+    def createUffMail(aluno, option)
+        aluno.uffmail = option
+    end
+    
     def start()
         @alunos = ManageFile.new("./alunos.csv").read
         
@@ -46,8 +50,9 @@ class Sistema
         end
                 
         aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-        optionsEmail(aluno)
-        
+        uffMail = optionsEmail(aluno)
+        createUffMail(aluno, uffMail)
+        emailCreated(aluno)
     end
     
 end

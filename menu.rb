@@ -18,9 +18,15 @@ module Menu
     end    
     
     def optionsEmail(aluno)
-    puts "Escolha uma Opcao"
-    puts aluno.email.generateEmail(aluno.nome)
+    puts "#{aluno.nome}, por favor escolha uma das opcoes abaixo para o seu UFFMail"
+    options = aluno.email.generateEmail(aluno.nome)
+    puts options
     option = gets.chomp
+    selected = options[option.to_i+1]
     end
     
+    def emailCreated(aluno)
+    puts "A criacao de seu e-mail (#{aluno.uffmail}) sera feita nos proximos minutos.
+Um SMS foi enviado para #{aluno.telefone} com a sua senha de acesso."
+    end
 end

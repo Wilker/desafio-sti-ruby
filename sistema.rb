@@ -3,10 +3,10 @@ require_relative 'manageFile'
 
 class Sistema
     include Menu
-    attr_accessor :alunos 
-    
-    def initialize(alunos)
-    @alunos = alunos
+    attr_accessor :path 
+    attr_accessor :alunos
+    def initialize(path)
+    @path = path
     end
             
     def matExists(mat)
@@ -28,8 +28,8 @@ class Sistema
         aluno.uffmail.email  = option
     end
     
-    def start()
-        fileManager = ManageFile.new("./alunos.csv")
+    def start
+        fileManager = ManageFile.new(path)
         @alunos = fileManager.read
         
         #TODO refatorar para pegar o aluno uma vez apenas!!

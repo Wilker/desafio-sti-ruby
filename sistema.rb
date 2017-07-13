@@ -4,57 +4,55 @@ require_relative 'manageFile'
 class Sistema
     include Menu
     attr_accessor :path 
-    attr_accessor :alunos
     def initialize(path)
-    @path = path
-    end
-            
-    def matExists(mat)
-    aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-    return alunos.include?(aluno)
+        @path = path
+        @alunos = read_alunos
     end
     
-    def isActive(mat)
-    aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-    active = aluno.status=="Ativo" ? true : false
+    def start   
+        alunos = read_alunos
+        aluno = solicita_aluno(alunos)
+        
+        if can_create_uffmail?(UffmailValidator.new(aluno))
+            criar_uffmail(aluno)
+            atualizar_banco(alunos)
+        end                   
     end
     
-    def checkUffMail(mat)
-    aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-    uffmail = aluno.uffmail.email==nil || !aluno.uffmail.email.include?("@id.uff.br")  ? false : true
+    private
+    
+    def can_create_uffmail?(validator)
+        return notExists unless validator.person_exists?
+        return userInactive unless validator.person_active?
+        return hasUffmail if validator.person_has_uffmail?
+        true
+    end
+    
+    def atualizar_banco(alunos)
+        fileManager.write(alunos)        
+    end
+    
+    def criar_uffmail(aluno)
+        createUffMail(aluno, optionsEmail(aluno))
+        emailCreated(aluno)
+    end
+    
+    def read_alunos
+        fileManager = ManageFile.new(path)
+        fileManager.read
+    end
+    
+    def solicita_aluno(alunos)
+        mat = menuInicial
+        alunos.detect{|aluno| aluno.matricula == mat.to_s}
+    end
+    
+    def apto_a_criar_uffmail(aluno)
+        exists?(aluno) && is_active?(aluno) && has_uffmail?(aluno)
     end
     
     def createUffMail(aluno, option)
-        aluno.uffmail.email  = option
-    end
-    
-    def start
-        fileManager = ManageFile.new(path)
-        @alunos = fileManager.read
-        
-        #TODO refatorar para pegar o aluno uma vez apenas!!
-        mat = menuInicial
-                       
-        if(!matExists(mat))
-        matNotExists
-        return
-        end
-        
-        if(!isActive(mat))
-        userInactive
-        return
-        end
-        
-        if(checkUffMail(mat))
-        uffMailExists
-        return
-        end
-                
-        aluno = alunos.detect{|aluno| aluno.matricula == mat.to_s}
-        uffMail = optionsEmail(aluno)
-        createUffMail(aluno, uffMail)
-        emailCreated(aluno)
-        fileManager.write(alunos)
+        aluno.uffmail.email = option
     end
     
 end

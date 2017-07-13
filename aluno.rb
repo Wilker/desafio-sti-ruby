@@ -11,18 +11,21 @@ class Aluno
     def initialize(
                    nome,
                    matricula,
-                   telefone="",
-                   email="",
-                   uffmail="",
-                   status="Inativo"
+                   telefone,
+                   email,
+                   uffmail,
+                   status
                    )
         @nome = nome 
         @matricula = matricula
         @telefone = telefone
-        @email = email
-        @uffmail = uffmail
         @status = status
         @email = Email.new(email)
         @uffmail = Uffmail.new(uffmail)
+    end 
+    
+    def has_uffmail?
+        
     end
+    
 end

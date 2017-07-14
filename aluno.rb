@@ -28,4 +28,8 @@ class Aluno
         
     end
     
+    def get_email
+        email.email 
+    end
+    
 end

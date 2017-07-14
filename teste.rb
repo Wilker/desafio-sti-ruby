@@ -1,3 +1,4 @@
+=begin
 require_relative 'aluno'
 require_relative 'email'
 require_relative 'manageFile'
@@ -11,18 +12,21 @@ aluno = Aluno.new(
                "teste@gmail.com",
                "teste@id.uff.br",
                "Ativo"
-               )
-               
-email = Email.new("teste@gmail.com")
+               )              
+=end
 
-puts aluno.email.generateEmail(aluno.nome)
+
+          
+#email = Email.new("teste@gmail.com")
+
+#puts aluno.email.generateEmail(aluno.nome)
 
 #print "#{email.aluno.nome} \n#{email.aluno.matricula} \n#{email.aluno.email} \n#{email.aluno.uffmail} \n#{email.aluno.status}\n"
 
 
 #puts email.generateEmail("Laura Azevedo Cunha")
 
-alunos = ManageFile.new("./alunos.csv").read
+#alunos = ManageFile.new("./alunos.csv").read
 
 =begin
 #testes de status e de existencia de uffmail
@@ -60,8 +64,22 @@ puts "uffmail? " + uffmail.to_s
 =end
 
 
-sistema = Sistema.new(alunos)
+#sistema = Sistema.new(alunos)
 
-sistema.start
+#sistema.start
 
-# print file
+require_relative 'bd'
+require_relative 'uffmail'
+require_relative 'email_generator'
+
+nome  = "Wilker de Oliveira Delfino"
+def remove_prepositions!(nome)
+   prep = ["e", "do", "da", "do", "das", "de", "di", "du"]
+   nome.split(" ").delete_if{|x| prep.include?(x)}
+end
+remove_prepositions!(nome)
+
+db = DataBase.new("./alunos.csv")
+email_creator = EmailService.new(db)
+puts email_creator.generateEmail("Wilker de Oliveira Delfino", Uffmail::PREFIX)
+

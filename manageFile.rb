@@ -20,7 +20,7 @@ class ManageFile
 
     # Função para carregar cada linha do arquivo para um objeto da classe aluno
     def read
-        alunos = CSV.read(path).collect{ |row| Aluno.new *row }
+        aluno = CSV.read(path).collect{|row| Aluno.new *row}
     end
     
     def write(alunos)

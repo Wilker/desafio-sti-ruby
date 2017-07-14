@@ -9,7 +9,7 @@ class DataBase
     
     
     def load_db(file_path)
-        ManageFile.new(file_path)
+        ManageFile.new(file_path).read
     end
     
     def email_already_exists?(email)

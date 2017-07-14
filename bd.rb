@@ -13,6 +13,6 @@ class DataBase
     end
     
     def email_already_exists?(email)
-        db.detect{|aluno| aluno.get_email == email.to_s}
+        db.detect{|aluno| aluno.get_uffmail == email.to_s}
     end 
 end

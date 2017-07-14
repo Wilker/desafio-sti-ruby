@@ -32,4 +32,7 @@ class Aluno
         email.email 
     end
     
+    def get_uffmail
+        uffmail.email
+    end
 end

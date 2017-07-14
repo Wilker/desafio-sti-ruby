@@ -81,5 +81,9 @@ remove_prepositions!(nome)
 
 db = DataBase.new("./alunos.csv")
 email_creator = EmailService.new(db)
+email_creator.email_already_exists?("wilker_oliveira@id.uff.br")
+
 puts email_creator.generateEmail("Wilker de Oliveira Delfino", Uffmail::PREFIX)
+
+puts email_creator.generateEmail("Joao da Silva Saurosss", Uffmail::PREFIX)
 

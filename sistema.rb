@@ -1,50 +1,57 @@
 require_relative 'menu'
 require_relative 'manageFile'
+require_relative 'uff_mail_validator'
+require_relative 'email_generator'
+require_relative 'uffmail'
+require_relative 'bd.rb'
 
 class Sistema
     include Menu
-    attr_accessor :path 
+    
+    attr_accessor :database
+    
     def initialize(path)
-        @path = path
-        @alunos = read_alunos
+        @database = read_alunos(path)
     end
     
     def start   
-        alunos = read_alunos
-        aluno = solicita_aluno(alunos)
-        
+
+        aluno = solicita_aluno(database)
+                
         if can_create_uffmail?(UffmailValidator.new(aluno))
-            criar_uffmail(aluno)
-            atualizar_banco(alunos)
+            criar_uffmail(aluno)       
+            atualizar_banco(database)
         end                   
     end
     
     private
     
     def can_create_uffmail?(validator)
-        return notExists unless validator.person_exists?
-        return userInactive unless validator.person_active?
+        return matNotExists unless validator.person_exists?
+        return userInactive if validator.person_active?
         return hasUffmail if validator.person_has_uffmail?
         true
     end
     
-    def atualizar_banco(alunos)
-        fileManager.write(alunos)        
+    def atualizar_banco(alunos)   
+        database.save(alunos)        
     end
     
     def criar_uffmail(aluno)
-        createUffMail(aluno, optionsEmail(aluno))
+        email_creator = EmailService.new(database)
+        options = email_creator.generateEmail(aluno.nome,Uffmail::PREFIX)
+        option = optionsEmail(aluno,options)
+        createUffMail(aluno,option)
         emailCreated(aluno)
     end
     
-    def read_alunos
-        fileManager = ManageFile.new(path)
-        fileManager.read
+    def read_alunos(path)
+        DataBase.new(path)
     end
     
     def solicita_aluno(alunos)
         mat = menuInicial
-        alunos.detect{|aluno| aluno.matricula == mat.to_s}
+        database.get_aluno(mat)
     end
     
     def apto_a_criar_uffmail(aluno)

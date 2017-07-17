@@ -10,13 +10,11 @@ class EmailService
     def generateEmail(nome_aluno, sufix)
         emails = []
         names = remove_prepositions(nome_aluno)
-        
-        #TODO refatorar para pegar  names < 3
-         emails << option_one(names,MODIFIER, sufix)
-         emails << option_two(names,MODIFIER, sufix)
-         emails << option_three(names,MODIFIER, sufix)
-         emails << option_four(names,MODIFIER, sufix)
-         emails << option_five(names,MODIFIER, sufix)
+        emails << option_one(names,MODIFIER, sufix)
+        emails << option_two(names,MODIFIER, sufix)
+        emails << option_three(names,MODIFIER, sufix)
+        emails << option_four(names,MODIFIER, sufix)
+        emails << option_five(names,MODIFIER, sufix)
     end
     
     def email_already_exists?(email)
@@ -70,7 +68,7 @@ class EmailService
     def option_five(names, mod, sufix)
         mod = "" if mod == 0 
         
-        option = names[0].chr + names[0] + names[-1] + mod.to_s + sufix
+        option = names[0].chr + names[-1]+ "_" + names[0] + mod.to_s + sufix
         
        option = option_five(names, mod.to_i + 1, sufix) if email_already_exists?(option)
         return option

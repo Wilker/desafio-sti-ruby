@@ -9,7 +9,7 @@ module Menu
         puts "Somente alunos ativos podem criar uffmail"
     end
 
-    def uffMailExists
+    def hasUffmail
         puts "Usuario ja possui uffmail"
     end
 
@@ -17,9 +17,8 @@ module Menu
         puts "Matricula invalida"
     end
 
-    def optionsEmail(aluno)
+    def optionsEmail(aluno,options)
         puts "#{aluno.nome}, por favor escolha uma das opcoes abaixo para o seu UFFMail"
-        options = aluno.email.generateEmail(aluno.nome)
         option = ""
         loop do
             puts options

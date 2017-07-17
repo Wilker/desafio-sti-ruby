@@ -17,8 +17,6 @@ class EmailService
          emails << option_three(names,MODIFIER, sufix)
          emails << option_four(names,MODIFIER, sufix)
          emails << option_five(names,MODIFIER, sufix)
-        
-        emails.map!(&:downcase)
     end
     
     def email_already_exists?(email)
@@ -63,7 +61,7 @@ class EmailService
     def option_four(names, mod, sufix)
         mod = "" if mod == 0 
         
-        option = names[0].chr + names[2] + mod.to_s + sufix
+        option = names[0].chr + names[-1] + mod.to_s + sufix
         
         option = option_four(names, mod.to_i + 1, sufix) if email_already_exists?(option)
         return option
@@ -72,7 +70,7 @@ class EmailService
     def option_five(names, mod, sufix)
         mod = "" if mod == 0 
         
-        option = names[0].chr + names[1] + names[2] + mod.to_s + sufix
+        option = names[0].chr + names[0] + names[-1] + mod.to_s + sufix
         
        option = option_five(names, mod.to_i + 1, sufix) if email_already_exists?(option)
         return option

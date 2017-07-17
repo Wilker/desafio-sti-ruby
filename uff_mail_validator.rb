@@ -1,10 +1,10 @@
-class UffMailValidator
+class UffmailValidator
     
     
     attr_accessor :aluno
     
     def initialize(person)
-    @aluno = aluno
+    @aluno = person
     end
     
     def person_exists?

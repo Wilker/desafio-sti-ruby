@@ -24,7 +24,7 @@ class EmailService
     private
     
     def remove_prepositions(nome)
-       prep = ["e", "do", "da", "do", "das", "de", "di", "du"]
+       prep = ["e", "do", "da", "dos", "das", "de", "di", "du"]
        nome.split(" ").delete_if{|x| prep.include?(x)}.map!(&:downcase)
     end
     

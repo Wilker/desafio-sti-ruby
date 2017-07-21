@@ -1,6 +1,6 @@
 require_relative 'menu'
 require_relative 'manageFile'
-require_relative 'uff_mail_validator'
+require_relative 'uffmail_validator'
 require_relative 'email_generator'
 require_relative 'uffmail'
 require_relative 'bd.rb'
@@ -39,7 +39,7 @@ class Sistema
     
     def criar_uffmail(aluno)
         email_creator = EmailService.new(database)
-        options = email_creator.generateEmail(aluno.nome,Uffmail::PREFIX)
+        options = email_creator.generate_email(aluno.nome,Uffmail::PREFIX)
         option = optionsEmail(aluno,options)
         createUffMail(aluno,option)
         emailCreated(aluno)

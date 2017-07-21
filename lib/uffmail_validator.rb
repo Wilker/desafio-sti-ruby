@@ -12,7 +12,7 @@ class UffmailValidator
     end
     
     def person_active?
-        aluno.status == "Active"
+        aluno.status == "Ativo"
     end
     
     def person_has_uffmail?

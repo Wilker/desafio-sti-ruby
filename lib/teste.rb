@@ -19,12 +19,12 @@ aluno = Aluno.new(
           
 #email = Email.new("teste@gmail.com")
 
-#puts aluno.email.generateEmail(aluno.nome)
+#puts aluno.email.generate_email(aluno.nome)
 
 #print "#{email.aluno.nome} \n#{email.aluno.matricula} \n#{email.aluno.email} \n#{email.aluno.uffmail} \n#{email.aluno.status}\n"
 
 
-#puts email.generateEmail("Laura Azevedo Cunha")
+#puts email.generate_email("Laura Azevedo Cunha")
 
 #alunos = ManageFile.new("./alunos.csv").read
 
@@ -83,7 +83,7 @@ db = DataBase.new("./alunos.csv")
 email_creator = EmailService.new(db)
 email_creator.email_already_exists?("wilker_oliveira@id.uff.br")
 
-puts email_creator.generateEmail("Wilker de Oliveira Delfino", Uffmail::PREFIX)
+puts email_creator.generate_email("Wilker de Oliveira Delfino", Uffmail::PREFIX)
 
-puts email_creator.generateEmail("Joao da Silva Saurosss", Uffmail::PREFIX)
+puts email_creator.generate_email("Joao da Silva Saurosss", Uffmail::PREFIX)
 
